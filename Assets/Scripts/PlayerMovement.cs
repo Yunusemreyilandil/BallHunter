@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
        
         if (isCollecting)
         {
-            // Sadece toplama animasyonu çalýþsýn
+           
             animator.SetBool("isRunning", false);
             animator.SetBool("isCollecting", true);
         }
