@@ -4,8 +4,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float turnSpeed = 700f;
-    public float collectDuration = 2f; // Toplama süresi
-    public float collectDistance = 1.5f; // Topa yakýn olma mesafesi
+    public float collectDuration = 2f; 
+    public float collectDistance = 1.5f; 
 
     private CharacterController characterController;
     private Camera mainCamera;
@@ -41,20 +41,20 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection = (forward * vertical + right * horizontal).normalized;
 
-        // Hareket
+     
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
 
-        // Dönüþ
+        
         if (moveDirection.magnitude > 0.1f)
         {
             Quaternion toRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, turnSpeed * Time.deltaTime);
         }
 
-        // Animasyonlar
+       
         if (isCollecting)
         {
-            // Sadece toplama animasyonu çalýþsýn
+            // Sadece toplama animasyonu Ã§alÃ½Ã¾sÃ½n
             animator.SetBool("isRunning", false);
             animator.SetBool("isCollecting", true);
         }
@@ -65,13 +65,13 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isCollecting", false);
         }
 
-        // Toplama baþlat
+        
         if (Input.GetKeyDown(KeyCode.F) && !isCollecting)
         {
             StartCollecting();
         }
 
-        // Topa yaklaþma ve toplama iþlemi
+        
         if (nearestBall != null)
         {
             float distance = Vector3.Distance(transform.position, nearestBall.transform.position);
@@ -79,12 +79,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 StartCollecting();
                 Destroy(nearestBall);  // Topu yok et
-                score++;               // Skoru artýr
-                UpdateScoreUI();       // Skoru UI'da göster
+                score++;               // Skoru artÃ½r
+                UpdateScoreUI();       // Skoru UI'da gÃ¶ster
             }
         }
 
-        // Topu bulma iþlemi
+       
         nearestBall = FindNearestBall();
     }
 
@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isCollecting = true;
         animator.SetBool("isCollecting", true);
-        Invoke(nameof(StopCollecting), collectDuration); // Belirli süre sonra durdur
+        Invoke(nameof(StopCollecting), collectDuration); // Belirli sÃ¼re sonra durdur
     }
 
     void StopCollecting()
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateScoreUI()
     {
-        // Skor güncellemesi yapýlacak UI burada iþlenecek
+        
         Debug.Log("Score: " + score);
     }
 }
