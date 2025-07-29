@@ -26,9 +26,8 @@ public class FleeingBall : MonoBehaviour
 
         if (isFleeing)
         {
-            // Yön sadece XZ düzleminde
             Vector3 direction = transform.position - player.position;
-            direction.y = 0f; // Y eksenini sýfýrla
+            direction.y = 0f; 
 
             if (direction != Vector3.zero)
             {
